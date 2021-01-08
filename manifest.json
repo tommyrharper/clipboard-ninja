@@ -12,6 +12,7 @@
     "matches": ["https://developer.chrome.com/*"],
     "js": ["jquery.min.js", "./main.js"]
   }],
+  "options_page": "options.html",
   "page_action": {
     "default_popup": "popup.html",
     "default_icon": {
