@@ -3,7 +3,8 @@ console.log('inside main.js')
 class Clipboard { 
     constructor() {
       this.clipboard = []
-      this.node = document.createElement("div")
+      this.div = document.createElement("div")
+      this.div.id = 'clipboard'
     }
   
     storeMessage = (msg) => { 
@@ -18,20 +19,32 @@ class Clipboard {
   class Message { 
     constructor(msg) {
       this.message = msg 
-      this.node = document.createElement("div")
+      this.div = document.createElement("div")
+      this.div.id = 'cbmessage'
+      this.div.innerHTML = msg;
     }
   }
   
   // event listener
   
   const clipboard = new Clipboard();
+
+  const main = document.getElementById('main');
+
+  main.prepend(clipboard.div);
   
   function onKeyDown(event) {
     console.log('onKeyDown');
     if (event.code === 'KeyC') {
       console.log('was command c');
-      clipboard.storeMessage(new Message('test message'));
-      console.log(clipboard.displayMessages())
+      const selectedText = window.getSelection().toString();
+      if (selectedText.length > 0) {
+        const newMsg = new Message(selectedText);
+        clipboard.storeMessage(newMsg.message);
+        console.log(clipboard.displayMessages())
+        const cb = document.getElementById('clipboard');
+        cb.append(newMsg.div)
+      }
     }
   }
   
