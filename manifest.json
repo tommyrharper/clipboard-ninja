@@ -2,11 +2,16 @@
   "name": "CopyNinja",
   "version": "1.0",
   "description": "Build an Extension!",
-  "permissions": ["declarativeContent", "storage"],
+  "permissions": ["activeTab", "declarativeContent", "storage"],
   "background": {
     "scripts": ["background.js"],
     "persistent": false
   },
+  "content_scripts": [
+  {
+    "matches": ["https://www.google.com/*"],
+    "js": ["jquery.min.js", "./main.js"]
+  }],
   "page_action": {
     "default_popup": "popup.html",
     "default_icon": {
