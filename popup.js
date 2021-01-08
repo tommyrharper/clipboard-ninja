@@ -44,8 +44,9 @@ console.log('inside popup.js');
 const clipboard = new Clipboard();
 
 const messageContainer = document.getElementById('messages-container');
-
 const exampleMessage = document.getElementById('example-message');
+
+const messagesArray = [];
 
 let port = chrome.extension.connect({
   name: "Sample Communication"
@@ -56,7 +57,55 @@ port.onMessage.addListener(function(msg) {
   // clipboard.storeMessage(newMsg.message);
   //exampleMessage.innerHTML = msg;
   // console.log("message received : " + msg);
-  const newDiv = document.createElement('div');
-  messageContainer.appendChild(newDiv);
-  newDiv.innerHTML = msg
+
+  //       console.log(clipboard.displayMessages())
+  //       const cb = document.getElementById('clipboard');
+  //       cb.append(newMsg.div)
+
+  // const messageDiv = document.createElement('div');
+  // messageContainer.appendChild(messageDiv);
+  // messageDiv.innerHTML = msg
+
+  console.log(msg);
+
+  messagesArray.push(msg);
+
+
+  if (messagesArray.length === 6) {
+    messagesArray.shift()
+  }
+
+  renderMessages(messagesArray);
+
 });
+
+function renderMessages(messagesArray) {
+  console.log('inside renderMessages');
+  console.log('messagesArray', messagesArray);
+  // Clear our all messages
+  if (messagesArray.length > 1) {
+    // for (let i = 0; i < messagesArray.length - 1; i++) {
+    //   let myobj = document.getElementById("message");
+    //   console.log('myobj', myobj);
+    //   myobj.remove();
+    // }
+    const messages = document.querySelectorAll('#message')
+    console.log('messages', messages);
+    for(const msg of messages) {
+      console.log(msg)
+      msg.remove();
+    }
+  }
+
+
+  // Render
+  for (const message of messagesArray) {
+    console.log('inside for loop');
+    console.log('message', message);
+    const messageDiv = document.createElement('div');
+    messageDiv.id = 'message'
+    messageContainer.appendChild(messageDiv);
+    messageDiv.innerHTML = message
+  }
+
+}
