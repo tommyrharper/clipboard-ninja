@@ -1,14 +1,22 @@
 {
   "manifest_version": 2,
-  "name": "Focus",
+  "name": "CopyNinja",
   "version": "1.0",
-  "description": "Remove distracting content from the YouTube homepage.",
+  "description": "Add multiple items to your clipboard.",
   "content_scripts": [
     {
-      "matches": ["https://www.youtube.com/*"],
+      "matches": ["http://google.com/*"],
       "js": ["jquery.min.js", "./main.js"],
       "css": ["index.css"]
     }
   ],
-  "web_accessible_resources": ["stoic.jpg","stoicquote1.jpg","stoicquote2.jpg"]
+  "page_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16" : "ninja_icon.png",
+      "32" : "ninja_icon.png",
+      "64" : "ninja_icon.png",
+      "128" : "ninja_icon.png"
+    }
+  }
 }
