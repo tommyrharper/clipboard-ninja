@@ -13,3 +13,14 @@ changeColor.onclick = function(element) {
         {code: 'document.body.style.backgroundColor = "' + color + '";console.log("test");'});
   });
 };
+
+const exampleMessage = document.getElementById('example-message');
+
+let port = chrome.extension.connect({
+  name: "Sample Communication"
+});
+port.postMessage("Hi BackGround");
+port.onMessage.addListener(function(msg) {
+  exampleMessage.innerHTML = msg;
+  console.log("message recieved" + msg);
+});
