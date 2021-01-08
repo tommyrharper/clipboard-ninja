@@ -8,12 +8,13 @@
     "persistent": false
   },
   "content_scripts": [
-  {
-    "matches": ["<all_urls>"],
-    "js": ["jquery.min.js", "./main.js"]
-  }],
+    {
+      "matches": ["<all_urls>"],
+      "js": ["jquery.min.js", "./main.js"]
+    }
+  ],
   "options_page": "options.html",
-  "page_action": {
+  "browser_action": {
     "default_popup": "popup.html",
     "default_icon": {
       "16": "images/get_started16.png",
