@@ -7,6 +7,7 @@
 }
 
 #clipboard {
+  width: 325px;
   overflow: scroll;
 }
 
@@ -21,4 +22,16 @@
 #shuriken {
   width: 15px;
   height: 15px;
+}
+#darkmode {
+  width: 15px;
+  height: 15px;
+}
+
+#empty {
+  font-size: 18;
+  font-weight: 100;
+  margin: auto;
+  width: 50%;
+  position: relative;
 }
