@@ -34,6 +34,15 @@ chrome.runtime.onMessage.addListener(
                 "from a content script:" + sender.tab.url :
                 "from the extension");
     console.log('message', request.message);
+
+    chrome.extension.onConnect.addListener(function(port) {
+      console.log("Connected .....");
+      port.onMessage.addListener(function(msg) {
+           console.log("message recieved" + msg);
+           port.postMessage(request.message);
+      });
+    })
+
     if (request.message) {
       sendResponse({result: "success!"});
     } else {
@@ -43,10 +52,10 @@ chrome.runtime.onMessage.addListener(
 );
 
 
-chrome.extension.onConnect.addListener(function(port) {
-  console.log("Connected .....");
-  port.onMessage.addListener(function(msg) {
-       console.log("message recieved" + msg);
-       port.postMessage("Hi Popup.js");
-  });
-})
+// chrome.extension.onConnect.addListener(function(port) {
+//   console.log("Connected .....");
+//   port.onMessage.addListener(function(msg) {
+//        console.log("message recieved" + msg);
+//        port.postMessage("Hi Popup.js");
+//   });
+// })
