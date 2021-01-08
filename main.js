@@ -29,7 +29,8 @@ class Clipboard {
   
   const clipboard = new Clipboard();
 
-  const main = document.getElementById('main');
+  // const main = document.getElementById('main');
+  const main = document.body;
 
   main.prepend(clipboard.div);
   
@@ -49,3 +50,5 @@ class Clipboard {
   }
   
   document.addEventListener("keydown", onKeyDown)
+
+  console.log(document);
