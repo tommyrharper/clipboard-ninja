@@ -22,54 +22,31 @@ class Clipboard {
   }
 
   storeMessage = (msg) => { 
-    console.log('inside storeMessage');
-
     if (this.clipboard.length >= this.MAX_MESSAGES) {
       this.clipboard.shift();
     }
     this.clipboard.push(new Message(msg));
-    
-    console.log('this.clipboard', this.clipboard);
-
     this.processMessage();
   }
 
-  displayMessages = () => {
-    console.log(this.clipboard)
-  }
-
   processMessage = () => {
-    console.log('inside processMessage');
-    // Clear our all messages
     if (this.clipboard.length > 1) {
-      console.log('triggering deleteMessges');
       this.deleteMessages()
     }
-    
-    // Render
     this.renderMessages();
   }
   
   renderMessages = () => {
-    console.log('inside renderMessages')
-    console.log('this.clipboard', this.clipboard)
     for (const message of this.clipboard) {
-      console.log('message', message)
-      console.log('this.div', this.div);
-      console.log('message.div', message.div);
       this.div.appendChild(message.div);
-      console.log('this.div', this.div);
     }
   }
   
   deleteMessages = () => {
-    console.log('inside deleteMessages');
     const messages = document.querySelectorAll('#message')
     for(const msg of messages) {
-      console.log('msg being deleted', msg);
       msg.remove();
     }
-    console.log('messages deleted');
   }
 }
 
