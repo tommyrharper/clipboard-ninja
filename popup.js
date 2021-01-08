@@ -70,42 +70,35 @@ port.onMessage.addListener(function(msg) {
 
   messagesArray.push(msg);
 
-
   if (messagesArray.length === 6) {
     messagesArray.shift()
   }
 
-  renderMessages(messagesArray);
-
+  processMessage(messagesArray);
 });
 
-function renderMessages(messagesArray) {
-  console.log('inside renderMessages');
-  console.log('messagesArray', messagesArray);
+function processMessage(messagesArray) {
   // Clear our all messages
   if (messagesArray.length > 1) {
-    // for (let i = 0; i < messagesArray.length - 1; i++) {
-    //   let myobj = document.getElementById("message");
-    //   console.log('myobj', myobj);
-    //   myobj.remove();
-    // }
-    const messages = document.querySelectorAll('#message')
-    console.log('messages', messages);
-    for(const msg of messages) {
-      console.log(msg)
-      msg.remove();
-    }
+    deleteMessages()
   }
-
-
+  
   // Render
+  renderMessages(messagesArray);
+}
+
+function renderMessages(messagesArray) {
   for (const message of messagesArray) {
-    console.log('inside for loop');
-    console.log('message', message);
     const messageDiv = document.createElement('div');
     messageDiv.id = 'message'
     messageContainer.appendChild(messageDiv);
     messageDiv.innerHTML = message
   }
+}
 
+function deleteMessages() {
+  const messages = document.querySelectorAll('#message')
+  for(const msg of messages) {
+    msg.remove();
+  }
 }
