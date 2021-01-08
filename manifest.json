@@ -1,0 +1,14 @@
+{
+  "manifest_version": 2,
+  "name": "Focus",
+  "version": "1.0",
+  "description": "Remove distracting content from the YouTube homepage.",
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["jquery.min.js", "./main.js"],
+      "css": ["index.css"]
+    }
+  ],
+  "web_accessible_resources": ["stoic.jpg","stoicquote1.jpg","stoicquote2.jpg"]
+}
