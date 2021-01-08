@@ -7,9 +7,9 @@ class Clipboard {
 
   storeMessage = (msg) => {
     if (this.clipboard.length >= this.MAX_MESSAGES) {
-      this.clipboard.shift();
+      this.clipboard.pop();
     }
-    this.clipboard.push(new Message(msg));
+    this.clipboard.unshift(new Message(msg));
     this.processMessage();
   };
 
