@@ -14,6 +14,37 @@ changeColor.onclick = function(element) {
   });
 };
 
+class Clipboard { 
+  constructor() {
+    this.clipboard = []
+    this.div = document.createElement("div")
+    this.div.id = 'clipboard'
+  }
+
+  storeMessage = (msg) => { 
+    this.clipboard.push(msg)
+  }
+
+  displayMessages = () => {
+    console.log(this.clipboard)
+  }
+}
+
+class Message { 
+  constructor(msg) {
+    this.message = msg 
+    this.div = document.createElement("div")
+    this.div.id = 'cbmessage'
+    this.div.innerHTML = msg;
+  }
+}
+
+console.log('inside popup.js');
+
+const clipboard = new Clipboard();
+
+const messageContainer = document.getElementById('messages-container');
+
 const exampleMessage = document.getElementById('example-message');
 
 let port = chrome.extension.connect({
@@ -21,6 +52,11 @@ let port = chrome.extension.connect({
 });
 port.postMessage("Hi BackGround");
 port.onMessage.addListener(function(msg) {
-  exampleMessage.innerHTML = msg;
-  console.log("message recieved" + msg);
+  const newMsg = new Message(msg);
+  // clipboard.storeMessage(newMsg.message);
+  //exampleMessage.innerHTML = msg;
+  // console.log("message received : " + msg);
+  const newDiv = document.createElement('div');
+  messageContainer.appendChild(newDiv);
+  newDiv.innerHTML = msg
 });
