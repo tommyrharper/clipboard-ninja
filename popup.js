@@ -54,8 +54,13 @@ class Message {
   constructor(msg) {
     this.message = msg 
     this.div = document.createElement("div")
+    this.div.addEventListener('click', this.copyMessage, false)
     this.div.id = 'message'
     this.div.innerHTML = msg;
+  }
+
+  copyMessage = () => {
+    console.log(this.message);
   }
 }
 
