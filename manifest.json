@@ -4,7 +4,7 @@
   "description": "A Multi-Item Clipboard!",
   "permissions": ["activeTab", "declarativeContent", "storage"],
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["./backgroundScripts/background.js"],
     "persistent": false
   },
   "content_scripts": [
