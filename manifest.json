@@ -1,5 +1,5 @@
 {
-  "name": "CopyNinja",
+  "name": "ClipBoard Ninja",
   "version": "1.0",
   "description": "A Multi-Item Clipboard!",
   "permissions": ["activeTab", "declarativeContent", "storage"],
