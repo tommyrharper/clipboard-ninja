@@ -1,3 +1,6 @@
+import { copyTextToClipboard } from './copytext.js';
+
+
 class Clipboard {
   constructor() {
     this.clipboard = [];
@@ -73,8 +76,6 @@ class Message {
   };
 }
 
-console.log("inside popup.js");
-
 const clipboard = new Clipboard();
 
 let port = chrome.extension.connect({
@@ -88,40 +89,3 @@ port.onMessage.addListener(function (msg) {
   const empty = document.getElementById("empty");
   empty.remove();
 });
-
-
-function copyTextToClipboard(text) {
-  if (!navigator.clipboard) {
-      fallbackCopyTextToClipboard(text);
-      return;
-  }
-  navigator.clipboard.writeText(text).then(function() {
-      console.log('Async: Copying to clipboard was successful!');
-  }, function(err) {
-      console.error('Async: Could not copy text: ', err);
-  });
-}
-
-function fallbackCopyTextToClipboard(text) {
-  var textArea = document.createElement("textarea");
-  textArea.value = text;
-
-  // Avoid scrolling to bottom
-  textArea.style.top = "0";
-  textArea.style.left = "0";
-  textArea.style.position = "fixed";
-
-  document.body.appendChild(textArea);
-  textArea.focus();
-  textArea.select();
-
-  try {
-      var successful = document.execCommand('copy');
-      var msg = successful ? 'successful' : 'unsuccessful';
-      console.log('Fallback: Copying text command was ' + msg);
-  } catch (err) {
-      console.error('Fallback: Oops, unable to copy', err);
-  }
-
-  document.body.removeChild(textArea);
-}
