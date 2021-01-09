@@ -3,22 +3,22 @@ chrome.runtime.onInstalled.addListener(function () {});
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   console.log(
     sender.tab
-      ? "from a content script:" + sender.tab.url
-      : "from the extension"
+      ? "From (content_script) main.js to (background_script) background.js: " + sender.tab.url
+      : "From the extension"
   );
-  console.log("message", request.message);
+  console.log("Message from (content_script) main.js to (background_script) background.js: ", request);
 
   chrome.extension.onConnect.addListener(function (port) {
-    console.log("Connected .....");
+    console.log("Connected to popup.js");
     port.onMessage.addListener(function (msg) {
-      console.log("message recieved" + msg);
+      console.log("message received from popup.js: " + msg);
       port.postMessage(request.message);
     });
   });
 
   if (request.message) {
-    sendResponse({ result: "success!" });
+    sendResponse({ messageFromBackgroundScript: "success!" });
   } else {
-    sendResponse({ result: "failure!" });
+    sendResponse({ messageFromBackgroundScript: "failure!" });
   }
 });
