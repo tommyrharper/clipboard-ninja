@@ -4,6 +4,7 @@
   margin: 3px;
   padding: 3px;
   border-radius: 5px;
+  margin-left: 9px;
 }
 
 #clipboard {
@@ -17,11 +18,17 @@
   margin: auto;
   width: 50%;
   position: relative;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
 }
 
 #shuriken {
   width: 15px;
   height: 15px;
+  margin-left: 3px;
+  margin-right: 3px;
 }
 #darkmode {
   width: 15px;
