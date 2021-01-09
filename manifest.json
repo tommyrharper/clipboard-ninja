@@ -16,15 +16,11 @@
   "browser_action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "64": "images/copy64.png",
-      "128": "images/copy128.png",
-      "256": "images/copy256.png"
+      "64": "images/ninja2.png"
     }
   },
   "icons": {
-    "64": "images/copy64.png",
-    "128": "images/copy128.png",
-    "256": "images/copy256.png"
+    "64": "images/ninja2.png"
   },
   "manifest_version": 2
 }
