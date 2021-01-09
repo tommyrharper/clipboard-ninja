@@ -1,32 +1,26 @@
 {
-  "name": "CopyNinja",
+  "name": "ClipBoard Ninja",
   "version": "1.0",
-  "description": "Build an Extension!",
+  "description": "A Multi-Item Clipboard!",
   "permissions": ["activeTab", "declarativeContent", "storage"],
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["./backgroundScripts/background.js"],
     "persistent": false
   },
   "content_scripts": [
-  {
-    "matches": ["<all_urls>"],
-    "js": ["jquery.min.js", "./main.js"]
-  }],
-  "options_page": "options.html",
-  "page_action": {
-    "default_popup": "popup.html",
+    {
+      "matches": ["<all_urls>"],
+      "js": ["./contentScripts/jquery.min.js", "./contentScripts/main.js"]
+    }
+  ],
+  "browser_action": {
+    "default_popup": "./popup/view/popup.html",
     "default_icon": {
-      "16": "images/get_started16.png",
-      "32": "images/get_started32.png",
-      "48": "images/get_started48.png",
-      "128": "images/get_started128.png"
+      "64": "images/ninja2.png"
     }
   },
   "icons": {
-    "16": "images/get_started16.png",
-    "32": "images/get_started32.png",
-    "48": "images/get_started48.png",
-    "128": "images/get_started128.png"
+    "64": "images/ninja2.png"
   },
   "manifest_version": 2
 }
