@@ -1,4 +1,4 @@
-import { copyTextToClipboard } from './copyText.js';
+import { copyTextToClipboard } from '../Funcs/copyText.js';
 
 export class Message {
   constructor(msg) {

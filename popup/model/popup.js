@@ -1,4 +1,4 @@
-import { Clipboard } from './Clipboard.js'
+import { Clipboard } from './Classes/Clipboard.js'
 
 const clipboard = new Clipboard();
 
